@@ -71,6 +71,29 @@ pingall
 
 ---
 
+### 🔹 Role of the Controller
+
+The POX controller performs the following tasks:
+
+- Receives packets from switches (`PacketIn` events)
+- Learns MAC address to port mappings (MAC learning)
+- Decides how packets should be forwarded
+- Installs flow rules into the switch
+- Periodically requests traffic statistics from switches
+- Logs packet and byte counts for monitoring
+
+---
+
+### 🔹 Flow Rule 
+
+```python
+msg = of.ofp_flow_mod()
+msg.match.dl_src = src
+msg.match.dl_dst = dst
+msg.actions.append(of.ofp_action_output(port=out_port))
+
+---
+
 ## 📊 Output
 
 The controller generates:
